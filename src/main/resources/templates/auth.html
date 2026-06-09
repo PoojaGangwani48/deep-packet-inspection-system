@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login & Register</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 350px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        .hidden { display: none; }
+        .msg { text-align: center; color: red; }
+    </style>
+
+    <script>
+        function showRegister() {
+            document.getElementById("login").style.display="none";
+            document.getElementById("register").style.display="block";
+        }
+        function showLogin() {
+            document.getElementById("login").style.display="block";
+            document.getElementById("register").style.display="none";
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="msg" th:text="${msg}"></div>
+
+    
+    <div id="login">
+        <h2>Login</h2>
+        <form th:action="@{/login}" method="post">
+            <input type="email" name="email" placeholder="Email"/>
+            <input type="password" name="password" placeholder="Password"/>
+            <button type="submit">Login</button>
+        </form>
+        <p onclick="showRegister()">Register</p>
+    </div>
+
+    
+    <div id="register" style="display:none;">
+        <h2>Register</h2>
+        <form th:action="@{/register}" method="post">
+            <input type="text" name="name" placeholder="Name"/>
+            <input type="email" name="email" placeholder="Email"/>
+            <input type="password" name="password" placeholder="Password"/>
+            <button type="submit">Register</button>
+        </form>
+        <p onclick="showLogin()">Login</p>
+    </div>
+
+</div>
+
+</body>
+</html>
